@@ -1,13 +1,17 @@
 /* eslint-disable react/prop-types */
+import { ChakraProvider, CSSReset } from '@chakra-ui/react';
 import { AuthProvider } from '../lib/auth';
-import '../styles/globals.css';
+import theme from '../styles/theme';
 
-function MyApp({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   return (
-    <AuthProvider>
-      <Component {...pageProps} />
-    </AuthProvider>
+    <ChakraProvider theme={theme}>
+      <AuthProvider>
+        <CSSReset />
+        <Component {...pageProps} />
+      </AuthProvider>
+    </ChakraProvider>
   );
 }
 
-export default MyApp;
+export default App;
