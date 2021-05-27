@@ -1,17 +1,31 @@
 /* eslint-disable import/no-unresolved */
 import Head from 'next/head';
-import { Button, Text, Code, Flex } from '@chakra-ui/react';
-import { Logo } from '@/styles/theme';
+import EmptyState from '@/components/EmptyState';
+import SiteTableSkeleton from '@/components/SiteTableSkeleton';
+import DashboardShell from '@/components/DashboardShell';
 
 import { useAuth } from '@/lib/auth';
-import EmptyState from '@/components/EmptyState';
+import useSWR from 'swr';
+import fetcher from '@/utils/fetcher';
+import SiteTable from '@/components/SiteTable';
 
 export default function Dashboard() {
   const auth = useAuth();
+  const { data } = useSWR('/api/sites', fetcher);
 
-  if (!auth.user) {
-    return 'Loading...';
+  console.log(data);
+
+  if (!data) {
+    return (
+      <DashboardShell>
+        <SiteTableSkeleton />
+      </DashboardShell>
+    );
   }
 
-  return <EmptyState />;
+  return (
+    <DashboardShell>
+      {data.sites ? <SiteTable sites={data.sites} /> : <EmptyState />}
+    </DashboardShell>
+  );
 }
