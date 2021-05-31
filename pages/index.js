@@ -1,26 +1,37 @@
+/* eslint-disable react/no-danger */
 /* eslint-disable import/no-unresolved */
 import Head from 'next/head';
-import { Button, Text, Code, Flex } from '@chakra-ui/react';
+import { Button, Flex, Link } from '@chakra-ui/react';
 import { Logo } from '@/styles/theme';
+import NextLink from 'next/link';
 
 import { useAuth } from '@/lib/auth';
-import EmptyState from '@/components/EmptyState';
 
 export default function Index() {
   const auth = useAuth();
   return (
     <Flex as="main" direction="column" align="center" justify="center" h="100vh">
       <Head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (document.cookie && document.cookie.includes(true)) {
+                window.location.href = "/dashboard"
+              }
+            `,
+          }}
+        />
         <title>Fast Feedback</title>
       </Head>
 
       <Logo color="black" boxSize="64px" />
       {auth.user ? (
         <>
-          <EmptyState />
-          <Button type="button" variant="ghost" mt="4" onClick={(e) => auth.signout()}>
-            Sign Out
-          </Button>
+          <NextLink href="/dashboard" passHref>
+            <Button mt={4} as="a" colorScheme="gray" variant="outline">
+              View Feedback
+            </Button>
+          </NextLink>
         </>
       ) : (
         <Button type="button" variant="link" mt="4" onClick={(e) => auth.signinWithGitHub()}>
