@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import { Button, Flex } from '@chakra-ui/react';
 
 import { useAuth } from '@/lib/auth';

@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable import/no-unresolved */
 import React, { useState, useRef } from 'react';
 import {
   AlertDialog,

@@ -1,5 +1,5 @@
-/* eslint-disable import/no-unresolved */
 /* eslint-disable react/prop-types */
+/* eslint-disable import/no-unresolved */
 import { ChakraProvider, CSSReset } from '@chakra-ui/react';
 import theme from '@/styles/theme';
 import { Global, css } from '@emotion/react';

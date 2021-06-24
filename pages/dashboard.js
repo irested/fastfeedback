@@ -1,5 +1,4 @@
 /* eslint-disable import/no-unresolved */
-
 import EmptyState from '@/components/EmptyState';
 import SiteTableSkeleton from '@/components/SiteTableSkeleton';
 import DashboardShell from '@/components/DashboardShell';
